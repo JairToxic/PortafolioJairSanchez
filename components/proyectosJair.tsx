@@ -5,10 +5,11 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 
+// Datos de los proyectos
 const projects = [
     {
         id: 1,
-        imageSrc: "/project1.png",
+        imageSrc: "/jair1.png",
         demoLink: "https://demo-proyecto1.com",
         githubLink: "https://github.com/usuario/proyecto1",
         title: "Sistema de Detección de Intrusos",
@@ -16,7 +17,7 @@ const projects = [
     },
     {
         id: 2,
-        imageSrc: "/project2.png",
+        imageSrc: "/jair1.png",
         demoLink: "https://demo-proyecto2.com",
         githubLink: "https://github.com/usuario/proyecto2",
         title: "Aplicación de Búsqueda de Imágenes",
@@ -24,7 +25,7 @@ const projects = [
     },
     {
         id: 3,
-        imageSrc: "/project3.png",
+        imageSrc: "/jair1.png",
         demoLink: "https://demo-proyecto3.com",
         githubLink: "https://github.com/usuario/proyecto3",
         title: "Plataforma de Análisis de Sentimientos",
@@ -32,7 +33,7 @@ const projects = [
     },
     {
         id: 4,
-        imageSrc: "/project4.png",
+        imageSrc: "/jair1.png",
         demoLink: "https://demo-proyecto4.com",
         githubLink: "https://github.com/usuario/proyecto4",
         title: "Sistema de Recomendación de Películas",
@@ -40,7 +41,7 @@ const projects = [
     },
     {
         id: 5,
-        imageSrc: "/project5.png",
+        imageSrc: "/jair1.png",
         demoLink: "https://demo-proyecto5.com",
         githubLink: "https://github.com/usuario/proyecto5",
         title: "Generador de Contenidos Automáticos",
@@ -48,7 +49,7 @@ const projects = [
     },
     {
         id: 6,
-        imageSrc: "/project6.png",
+        imageSrc: "/jair1.png",
         demoLink: "https://demo-proyecto6.com",
         githubLink: "https://github.com/usuario/proyecto6",
         title: "Aplicación de Seguimiento de Ejercicios",
@@ -57,6 +58,7 @@ const projects = [
     // Añadir más proyectos si es necesario
 ];
 
+// Componente para mostrar la tarjeta del proyecto
 const ProjectCard = ({ imageSrc, title, description, demoLink, githubLink, unlocked }) => (
     <motion.div
         whileHover={{ scale: 1.05, rotate: 2 }}
@@ -104,9 +106,11 @@ const ProjectCard = ({ imageSrc, title, description, demoLink, githubLink, unloc
     </motion.div>
 );
 
+// Componente principal que renderiza los proyectos y el botón para desbloquear más
 const Projects = () => {
     const [unlockedProjects, setUnlockedProjects] = useState([1]);
 
+    // Función para desbloquear proyectos
     const handleUnlockProject = (id) => {
         if (id <= projects.length) {
             setUnlockedProjects([...unlockedProjects, id]);
