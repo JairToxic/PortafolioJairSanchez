@@ -6,6 +6,7 @@ import TransitionPage from "@/components/transition-page";
 const ServicesPage = () => {
     return (
         <>
+        
             <TransitionPage />
             <CircleImage />
             <AvatarServices />
