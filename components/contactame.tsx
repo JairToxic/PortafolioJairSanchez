@@ -1,22 +1,28 @@
 "use client";
 
-import { useState } from "react";
+import { useState, ChangeEvent, FormEvent } from "react";
 
-const ContactMe = () => {
-    const [formData, setFormData] = useState({
+interface FormData {
+    name: string;
+    email: string;
+    message: string;
+}
+
+const ContactMe: React.FC = () => {
+    const [formData, setFormData] = useState<FormData>({
         name: "",
         email: "",
         message: "",
     });
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const [submissionStatus, setSubmissionStatus] = useState(null);
+    const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+    const [submissionStatus, setSubmissionStatus] = useState<string | null>(null);
 
-    const handleChange = (e) => {
+    const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
         setFormData((prev) => ({ ...prev, [name]: value }));
     };
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setIsSubmitting(true);
         setSubmissionStatus(null);
