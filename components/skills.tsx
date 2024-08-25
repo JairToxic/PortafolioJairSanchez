@@ -6,8 +6,14 @@ import { FaInfoCircle } from 'react-icons/fa';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
-const useAnimatedProgress = (percentage) => {
-    const [animatedPercentage, setAnimatedPercentage] = useState(0);
+interface Skill {
+    name: string;
+    level: string;
+    percentage: number;
+}
+
+const useAnimatedProgress = (percentage: number): number => {
+    const [animatedPercentage, setAnimatedPercentage] = useState<number>(0);
 
     useEffect(() => {
         let start = 0;
@@ -29,7 +35,12 @@ const useAnimatedProgress = (percentage) => {
     return animatedPercentage;
 };
 
-const SkillCard = ({ skill, onClick }) => {
+interface SkillCardProps {
+    skill: Skill;
+    onClick: () => void;
+}
+
+const SkillCard = ({ skill, onClick }: SkillCardProps) => {
     const animatedPercentage = useAnimatedProgress(skill.percentage);
 
     return (
@@ -65,7 +76,12 @@ const SkillCard = ({ skill, onClick }) => {
     );
 };
 
-const SkillDetailsModal = ({ skill, onClose }) => {
+interface SkillDetailsModalProps {
+    skill: Skill;
+    onClose: () => void;
+}
+
+const SkillDetailsModal = ({ skill, onClose }: SkillDetailsModalProps) => {
     const animatedPercentage = useAnimatedProgress(skill.percentage);
 
     return (
@@ -115,9 +131,9 @@ const SkillDetailsModal = ({ skill, onClose }) => {
 };
 
 const SkillsList = () => {
-    const [selectedSkill, setSelectedSkill] = useState(null);
+    const [selectedSkill, setSelectedSkill] = useState<Skill | null>(null);
 
-    const skills = [
+    const skills: Skill[] = [
         { name: "Inteligencia Artificial", level: "Avanzado", percentage: 90 },
         { name: "Azure Machine Learning", level: "Avanzado", percentage: 85 },
         { name: "Python", level: "Avanzado", percentage: 80 },
