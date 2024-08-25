@@ -128,24 +128,24 @@ const Projects = () => {
     };
 
     return (
-        <section className="py-20 px-8">
-            <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
-                {projects.map(project => (
-                    <ProjectCard
-                        key={project.id}
-                        imageSrc={project.imageSrc}
-                        title={project.title}
-                        description={project.description}
-                        demoLink={project.demoLink}
-                        githubLink={project.githubLink}
-                        unlocked={unlockedProjects.includes(project.id)}
-                    />
-                ))}
-            </div>
-            {/* Espacio adicional para el scroll */}
-            <div className="h-32"></div>
+        <div className="relative">
+            <section className="py-20 px-8 pb-24"> {/* Ajustar el padding bottom para evitar que el botón interfiera */}
+                <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
+                    {projects.map(project => (
+                        <ProjectCard
+                            key={project.id}
+                            imageSrc={project.imageSrc}
+                            title={project.title}
+                            description={project.description}
+                            demoLink={project.demoLink}
+                            githubLink={project.githubLink}
+                            unlocked={unlockedProjects.includes(project.id)}
+                        />
+                    ))}
+                </div>
+            </section>
             {/* Botón flotante para desbloquear proyectos */}
-            <div className="fixed bottom-8 right-8 z-50">
+            <div className="fixed bottom-8 right-8 z-50 hidden md:block">
                 <motion.button
                     whileHover={{ scale: 1.1, backgroundColor: '#2B6CB0', color: '#fff' }}
                     className="bg-blue-600 text-white border border-blue-700 px-6 py-3 rounded-full shadow-lg transition-colors hover:bg-blue-700"
@@ -155,7 +155,18 @@ const Projects = () => {
                     {unlockedProjects.length >= projects.length ? "Todos los Proyectos Desbloqueados" : "Desbloquear Siguiente Proyecto"}
                 </motion.button>
             </div>
-        </section>
+            {/* Botón visible solo en móviles */}
+            <div className="fixed top-8 right-8 md:hidden z-50">
+                <motion.button
+                    whileHover={{ scale: 1.1, backgroundColor: '#2B6CB0', color: '#fff' }}
+                    className="bg-blue-600 text-white border border-blue-700 px-6 py-3 rounded-full shadow-lg transition-colors hover:bg-blue-700"
+                    onClick={() => handleUnlockProject(unlockedProjects.length + 1)}
+                    disabled={unlockedProjects.length >= projects.length}
+                >
+                    {unlockedProjects.length >= projects.length ? "Todos los Proyectos Desbloqueados" : "Desbloquear Siguiente Proyecto"}
+                </motion.button>
+            </div>
+        </div>
     );
 };
 
