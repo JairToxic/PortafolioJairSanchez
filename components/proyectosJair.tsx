@@ -5,6 +5,16 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 
+// Definir la interfaz para las propiedades del componente ProjectCard
+interface ProjectCardProps {
+    imageSrc: string;
+    title: string;
+    description: string;
+    demoLink: string;
+    githubLink: string;
+    unlocked: boolean;
+}
+
 // Datos de los proyectos
 const projects = [
     {
@@ -59,7 +69,7 @@ const projects = [
 ];
 
 // Componente para mostrar la tarjeta del proyecto
-const ProjectCard = ({ imageSrc, title, description, demoLink, githubLink, unlocked }) => (
+const ProjectCard = ({ imageSrc, title, description, demoLink, githubLink, unlocked }: ProjectCardProps) => (
     <motion.div
         whileHover={{ scale: 1.05, rotate: 2 }}
         className={`relative rounded-lg overflow-hidden shadow-lg transform transition-transform duration-300 ${unlocked ? '' : 'blur-sm'}`}
@@ -108,10 +118,10 @@ const ProjectCard = ({ imageSrc, title, description, demoLink, githubLink, unloc
 
 // Componente principal que renderiza los proyectos y el botón para desbloquear más
 const Projects = () => {
-    const [unlockedProjects, setUnlockedProjects] = useState([1]);
+    const [unlockedProjects, setUnlockedProjects] = useState<number[]>([1]);
 
     // Función para desbloquear proyectos
-    const handleUnlockProject = (id) => {
+    const handleUnlockProject = (id: number) => {
         if (id <= projects.length) {
             setUnlockedProjects([...unlockedProjects, id]);
         }
