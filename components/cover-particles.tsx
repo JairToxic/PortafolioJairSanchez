@@ -51,7 +51,7 @@ export const CoverParticles = () => {
                 width: 1,
             },
             move: {
-                direction: "none",
+                direction: "none", // Asegúrate de que este valor sea aceptado
                 enable: true,
                 outModes: {
                     default: "bounce",
@@ -70,7 +70,7 @@ export const CoverParticles = () => {
                 value: 0.6,
             },
             shape: {
-                type: "star", // Cambiado a estrella
+                type: "star", // Asegúrate de que "star" sea un tipo válido
             },
             size: {
                 value: { min: 1, max: 5 },
